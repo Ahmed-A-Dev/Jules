@@ -1,0 +1,203 @@
+/* Base variables (fallback / default - can be dark theme) */
+:root {
+    --background: #111111;
+    --foreground: #e0e0e0;
+    --accent: #00ff99;
+    --secondary: #00cc77;
+    --error: #ff3333;
+    /* Add other UI specific variables if needed, e.g., cursor color, prompt color */
+    --cursor-color: var(--accent);
+    --prompt-color: var(--accent);
+    --scrollbar-thumb-color: var(--accent);
+    --scrollbar-track-color: var(--background);
+    --scrollbar-thumb-hover-color: var(--secondary);
+}
+
+/* Apply base colors to body and terminal elements */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: 'Consolas', 'Menlo', 'Courier New', monospace;
+    overflow: hidden;
+}
+
+#terminal {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Use viewport height */
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#output {
+    flex-grow: 1;
+    overflow-y: auto; /* Allow vertical scrolling for output */
+    padding-bottom: 5px; /* Small space before input line */
+    line-height: 1.4; /* Improve readability */
+}
+
+#output div { /* Styling for individual output lines */
+    white-space: pre-wrap; /* Preserve whitespace and wrap lines */
+    word-break: break-all; /* Break long words to prevent overflow */
+}
+
+#input-line {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0; /* Prevent input line from shrinking */
+    padding-top: 5px; /* Small space above input line */
+}
+
+#prompt {
+    margin-right: 8px; /* Space after prompt */
+    color: var(--prompt-color);
+}
+
+#command {
+    background-color: transparent;
+    border: none;
+    color: var(--foreground); /* Ensure input text uses theme foreground */
+    font-family: inherit; /* Inherit font family */
+    font-size: 1em; /* Match surrounding text size */
+    flex-grow: 1;
+    outline: none; /* Remove default focus outline */
+    caret-color: transparent; /* We use a custom cursor */
+}
+
+#cursor {
+    width: 8px; /* Width of a typical character in monospaced font */
+    height: 1.2em; /* Height based on line height */
+    background-color: var(--cursor-color); /* Cursor color */
+    animation: blink 1s step-end infinite;
+    margin-left: 1px;
+}
+
+/* Blinking animation for the cursor */
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Scrollbar styling using theme variables */
+#output::-webkit-scrollbar {
+    width: 8px;
+}
+#output::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-color);
+}
+#output::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb-color);
+    border-radius: 4px;
+}
+#output::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover-color);
+}
+
+
+/* Theme Definitions */
+
+/* Dark Theme (matches :root for fallback) */
+[data-theme="dark"] {
+    --background: #111111;
+    --foreground: #e0e0e0;
+    --accent: #00ff99;
+    --secondary: #00cc77;
+    --error: #ff3333;
+}
+
+/* Light Theme */
+[data-theme="light"] {
+    --background: #fafafa;
+    --foreground: #333333;
+    --accent: #0077ff;
+    --secondary: #0055cc;
+    --error: #dd0000;
+}
+
+/* Dracula Theme */
+[data-theme="dracula"] {
+    --background: #282a36;
+    --foreground: #f8f8f2;
+    --accent: #50fa7b;    /* green */
+    --secondary: #bd93f9; /* purple */
+    --error: #ff5555;     /* red */
+}
+
+/* One Dark Theme */
+[data-theme="onedark"] {
+    --background: #282c34;
+    --foreground: #abb2bf;
+    --accent: #61afef;    /* blue */
+    --secondary: #98c379; /* green */
+    --error: #e06c75;     /* red */
+}
+
+/* Tokyo Night Theme */
+[data-theme="tokyo"] {
+    --background: #1a1b26;
+    --foreground: #c0caf5;
+    --accent: #7aa2f7;    /* blue */
+    --secondary: #bb9af7; /* purple */
+    --error: #f7768e;     /* red */
+}
+
+/* Monokai Theme */
+[data-theme="monokai"] {
+    --background: #272822;
+    --foreground: #f8f8f2;
+    --accent: #a6e22e;    /* green */
+    --secondary: #66d9ef; /* blue */
+    --error: #f92672;     /* pink/red */
+}
+
+/* Nord Theme */
+[data-theme="nord"] {
+    --background: #2e3440; /* nord0 */
+    --foreground: #d8dee9; /* nord4 */
+    --accent: #88c0d0;    /* nord8 - light blue */
+    --secondary: #5e81ac; /* nord10 - darker blue */
+    --error: #bf616a;     /* nord11 - red */
+}
+
+/* Cyberpunk Theme */
+[data-theme="cyberpunk"] {
+    --background: #0d0221; /* very dark blue/purple */
+    --foreground: #00f0ff; /* cyan */
+    --accent: #ff00ff;    /* magenta */
+    --secondary: #f0ff00; /* yellow */
+    --error: #ff0054;     /* bright red */
+}
+
+/* Hacker Theme */
+[data-theme="hacker"] {
+    --background: #000000;
+    --foreground: #00ff00; /* green */
+    --accent: #00dd00;    /* slightly brighter green */
+    --secondary: #00aa00; /* darker green */
+    --error: #ff0000;     /* red */
+}
+
+/* Retro Theme (Amber on Black) */
+[data-theme="retro"] {
+    --background: #1a1a1a;
+    --foreground: #ffb000; /* amber */
+    --accent: #ffa000;
+    --secondary: #ffc107;
+    --error: #ff5722;     /* deep orange */
+}
+
+/* Ocean Theme */
+[data-theme="ocean"] {
+    --background: #0f1c23; /* deep blue/green */
+    --foreground: #add8e6; /* light blue */
+    --accent: #20b2aa;    /* light sea green */
+    --secondary: #87ceeb; /* sky blue */
+    --error: #ff6347;     /* tomato red */
+}
