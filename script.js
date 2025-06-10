@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             description: "List portfolio projects.",
             execute: () => {
                 appendOutput("Projects:");
-                portfolioData.projects.forEach(p => appendOutput(`- ${p.name}: ${escapeHtml(p.description)}`));
+                portfolioData.projects.forEach(p => appendOutput(`- ${escapeHtml(p.name)}: ${escapeHtml(p.description)}`));
             }
         },
         'skills': {
